@@ -1,6 +1,7 @@
 package com.example.itau.servicos;
 
 import com.example.itau.Repositorios.TransacaoRepositorio;
+import com.example.itau.dto.TransacaoDTO;
 import com.example.itau.modelos.Transacao;
 import com.example.itau.servicos.interfaces.IServicos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class TransacaoServico implements IServicos<Transacao> {
+public class TransacaoServico implements IServicos<TransacaoDTO> {
     @Autowired
     private TransacaoRepositorio repositorio;
     @Override
     @Transactional
-    public Transacao inserir(Transacao transacao) {
-
-        return null;
+    public TransacaoDTO inserir(TransacaoDTO transacaoDTO) {
+        Transacao entidade = new Transacao(transacaoDTO);
+        entidade = repositorio.save(entidade);
+        return new TransacaoDTO(entidade);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Transacao> listar(PageRequest pageRequest) {
+    public Page<TransacaoDTO> listar(PageRequest pageRequest) {
         return null;
     }
 

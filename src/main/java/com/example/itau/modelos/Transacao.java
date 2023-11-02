@@ -1,5 +1,6 @@
 package com.example.itau.modelos;
 
+import com.example.itau.dto.TransacaoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,5 +22,8 @@ public class Transacao {
     private Double valor;
     @NonNull
     private LocalDateTime dataHora;
-
+    public Transacao(TransacaoDTO entidadeDTO){
+        this.id=entidadeDTO.getId();
+        this.dataHora=entidadeDTO.getDataHora();
+    }
 }

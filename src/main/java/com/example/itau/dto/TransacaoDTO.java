@@ -4,6 +4,7 @@ import com.example.itau.modelos.Transacao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 public class TransacaoDTO {
+    @NonNull
     private Long id;
+    @NonNull
     private LocalDateTime dataHora;
 
     public TransacaoDTO(Transacao entidade) {
