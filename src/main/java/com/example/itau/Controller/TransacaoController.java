@@ -29,7 +29,7 @@ public class TransacaoController {
         transacaoServico.deletar();
         return ResponseEntity.noContent().build();
     }
-    @GetMapping
+    @GetMapping(value = "/estatistica")
     ResponseEntity<EstatisticaDTO> estatistica(){
         return ResponseEntity.ok(estatisticaService.estatistica(transacaoServico.transacaoList()));
     }
