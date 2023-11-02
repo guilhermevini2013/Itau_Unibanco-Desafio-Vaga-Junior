@@ -4,7 +4,6 @@ import com.example.itau.Repositorios.TransacaoRepositorio;
 import com.example.itau.dto.TransacaoDTO;
 import com.example.itau.factory.Factory;
 import com.example.itau.modelos.Transacao;
-import com.example.itau.servicos.excecoes.NumeroNegativoException;
 import com.example.itau.servicos.excecoes.TransacaoNaoFeitaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
