@@ -1,9 +1,10 @@
 package com.example.itau.dto;
 
 import com.example.itau.modelos.Transacao;
-import com.example.itau.servicos.excecoes.NumeroNegativoExceprion;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -11,11 +12,11 @@ import java.time.LocalDateTime;
 @Setter
 public class TransacaoDTO {
     @NonNull
+    @JsonIgnore
     private Long id;
-    @NonNull
     private Double valor;
     @NonNull
-    private LocalDateTime dataHora;
+    private LocalDateTime dataHora = LocalDateTime.now();
 
     public TransacaoDTO(Transacao entidade) {
         this.id = entidade.getId();
@@ -23,9 +24,8 @@ public class TransacaoDTO {
         this.dataHora = entidade.getDataHora();
     }
 
-    public TransacaoDTO(@NonNull Long id, @NonNull Double valor, @NonNull LocalDateTime dataHora) {
+    public TransacaoDTO(@NonNull Long id, @NonNull Double valor) {
         this.id = id;
         this.valor = valor;
-        this.dataHora = dataHora;
     }
 }

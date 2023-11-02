@@ -4,15 +4,13 @@ import com.example.itau.Repositorios.TransacaoRepositorio;
 import com.example.itau.dto.TransacaoDTO;
 import com.example.itau.factory.Factory;
 import com.example.itau.modelos.Transacao;
-import com.example.itau.servicos.excecoes.NumeroNegativoExceprion;
+import com.example.itau.servicos.excecoes.NumeroNegativoException;
 import com.example.itau.servicos.excecoes.TransacaoNaoFeitaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -25,6 +23,7 @@ public class TransacaoServicoTests {
     private TransacaoDTO transacaoDTO;
     private Transacao transacao;
     private Optional<Transacao> optionalTransacao;
+
     @BeforeEach
     void setUp() {
         optionalTransacao = null;
@@ -38,22 +37,30 @@ public class TransacaoServicoTests {
         optionalTransacao = transacaoRepositorio.findById(transacaoDTO.getId());
         Assertions.assertNotNull(optionalTransacao.get());
     }
+
     @Test
-    void inserirDeveLancarTransacaoNaoFeitaExceptionQuandoTiverAtributosVazio(){
-        Assertions.assertThrows(TransacaoNaoFeitaException.class,()->{
-            try{
+    void inserirDeveLancarTransacaoNaoFeitaExceptionQuandoTiverAtributosVazio() {
+        Assertions.assertThrows(TransacaoNaoFeitaException.class, () -> {
+            try {
                 transacaoDTO = Factory.criarTransacaoDTOComValorNulo();
                 transacaoDTO = transacaoServico.inserir(transacaoDTO);
-            }catch (NullPointerException ex){
+            } catch (NullPointerException ex) {
                 throw new TransacaoNaoFeitaException("Usuario Incorreto");
             }
         });
     }
+
     @Test
-    void inserirDeveLancarNumeroNegativoExceptionQuandoValorForNegativo(){
+    void inserirDeveLancarNumeroNegativoExceptionQuandoValorForNegativo() {
         transacaoDTO = Factory.criarTransacaoDTOValorNegativo();
-        Assertions.assertThrows(NumeroNegativoExceprion.class,()->{
+        Assertions.assertThrows(TransacaoNaoFeitaException.class, () -> {
             transacaoDTO = transacaoServico.inserir(transacaoDTO);
         });
+    }
+    @Test
+    void deletarDeveLimparTodasAsInformacoesDoBD(){
+        transacaoRepositorio.save(Factory.criar());
+        transacaoServico.deletar();
+        Assertions.assertTrue(transacaoRepositorio.findAll().isEmpty());
     }
 }

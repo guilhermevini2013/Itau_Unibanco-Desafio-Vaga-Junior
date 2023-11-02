@@ -15,7 +15,7 @@ public class Factory {
         return entidadeDTO;
     }
     public static TransacaoDTO criarTransacaoDTOValorNegativo(){
-        TransacaoDTO entidadeDTO = new TransacaoDTO(1l,-100.0,LocalDateTime.now());
+        TransacaoDTO entidadeDTO = new TransacaoDTO(1l,-100.0);
         return entidadeDTO;
     }
     public static Transacao criarComValorNulo(){
