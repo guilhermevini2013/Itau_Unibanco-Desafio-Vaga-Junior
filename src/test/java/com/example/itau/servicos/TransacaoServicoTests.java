@@ -21,7 +21,6 @@ public class TransacaoServicoTests {
     @Autowired
     private TransacaoRepositorio transacaoRepositorio;
     private TransacaoDTO transacaoDTO;
-    private Transacao transacao;
     private Optional<Transacao> optionalTransacao;
 
     @BeforeEach

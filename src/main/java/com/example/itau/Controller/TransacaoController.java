@@ -2,7 +2,7 @@ package com.example.itau.Controller;
 
 import com.example.itau.dto.EstatisticaDTO;
 import com.example.itau.dto.TransacaoDTO;
-import com.example.itau.servicos.EstatisticaService;
+import com.example.itau.servicos.EstatisticaServico;
 import com.example.itau.servicos.TransacaoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class TransacaoController {
     @Autowired
     private TransacaoServico transacaoServico;
     @Autowired
-    private EstatisticaService estatisticaService;
+    private EstatisticaServico estatisticaService;
     @PostMapping
     public ResponseEntity<TransacaoDTO> inserir(@RequestBody TransacaoDTO dto){
         dto = transacaoServico.inserir(dto);
