@@ -14,6 +14,10 @@ public class Factory {
         TransacaoDTO entidadeDTO = new TransacaoDTO(criar());
         return entidadeDTO;
     }
+    public static TransacaoDTO criarTransacaoDTOValorNegativo(){
+        TransacaoDTO entidadeDTO = new TransacaoDTO(1l,-100.0,LocalDateTime.now());
+        return entidadeDTO;
+    }
     public static Transacao criarComValorNulo(){
         Transacao entidade = new Transacao(1l,100.0, null);
         return entidade;

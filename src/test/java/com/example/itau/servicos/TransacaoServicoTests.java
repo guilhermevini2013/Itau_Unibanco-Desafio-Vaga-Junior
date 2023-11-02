@@ -4,6 +4,7 @@ import com.example.itau.Repositorios.TransacaoRepositorio;
 import com.example.itau.dto.TransacaoDTO;
 import com.example.itau.factory.Factory;
 import com.example.itau.modelos.Transacao;
+import com.example.itau.servicos.excecoes.NumeroNegativoExceprion;
 import com.example.itau.servicos.excecoes.TransacaoNaoFeitaException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,6 +47,13 @@ public class TransacaoServicoTests {
             }catch (NullPointerException ex){
                 throw new TransacaoNaoFeitaException("Usuario Incorreto");
             }
+        });
+    }
+    @Test
+    void inserirDeveLancarNumeroNegativoExceptionQuandoValorForNegativo(){
+        transacaoDTO = Factory.criarTransacaoDTOValorNegativo();
+        Assertions.assertThrows(NumeroNegativoExceprion.class,()->{
+            transacaoDTO = transacaoServico.inserir(transacaoDTO);
         });
     }
 }

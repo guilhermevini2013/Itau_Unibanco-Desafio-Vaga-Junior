@@ -24,6 +24,7 @@ public class Transacao {
     private LocalDateTime dataHora;
     public Transacao(TransacaoDTO entidadeDTO){
         this.id=entidadeDTO.getId();
+        this.valor=entidadeDTO.getValor();
         this.dataHora=entidadeDTO.getDataHora();
     }
 }
